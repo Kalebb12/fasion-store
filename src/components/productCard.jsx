@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Productard = ({ product }) => {
   return (
-    <Link to={`/product/${product.id}`} className="w-[300px] min-w-[300px]">
+    <Link to={`/product/${product.id}`} className="block w-[300px] min-w-[300px]">
       <img
         src={product.img}
         alt={product.productName}

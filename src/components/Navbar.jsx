@@ -2,10 +2,11 @@ import { CiHeart } from "react-icons/ci";
 import { FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useCart } from "../features/cart/useCart";
+import useNavigateHook from "../hooks/useNavigate";
 
-const IconWrapper = ({ children }) => {
+const IconWrapper = ({ children ,onClick}) => {
   return (
-    <button className="min-w-[50px] shadow-md active:scale-95 min-h-[50px] px-3 py-2 flex items-center justify-center bg-black text-white rounded-full">
+    <button onClick={onClick} className="min-w-[50px] shadow-md active:scale-95 min-h-[50px] px-3 py-2 flex items-center justify-center bg-black text-white rounded-full">
       {children}
     </button>
   );
@@ -13,6 +14,7 @@ const IconWrapper = ({ children }) => {
 
 const Navbar = () => {
   const {data} = useCart()
+  const navigate = useNavigateHook()
   
   return (
     <div className="flex items-center justify-between px-5 py-5">
@@ -27,7 +29,9 @@ const Navbar = () => {
           <CiHeart />
         </IconWrapper>
 
-        <IconWrapper>Cart {data ? `(${data.length})` : `(0)`}</IconWrapper>
+        <IconWrapper onClick={()=>{
+          navigate('/cart')
+        }}>Cart {data ? `(${data.length})` : `(0)`}</IconWrapper>
 
         <IconWrapper>
           <FiUser />
